@@ -3,6 +3,16 @@ const emptyStateEl = document.getElementById("empty-state");
 const toastEl = document.getElementById("toast");
 const helperEl = document.getElementById("helper-text");
 
+let editingId = null;
+
+export function setEditingId(id) {
+  editingId = id;
+}
+
+export function getEditingId() {
+  return editingId;
+}
+
 export function setHelperText(texto) {
   if (!helperEl) return;
   helperEl.textContent = texto;
@@ -37,9 +47,18 @@ export function renderTareas(tareas = []) {
       <div class="task-left">
         <input type="checkbox" ${tarea.estado === "completada" ? "checked" : ""} data-action="toggle" data-id="${tarea.id}" />
         <div>
-          <p class="task-desc ${tarea.estado === "completada" ? "done" : ""}">
-            ${tarea.descripcion}
-          </p>
+          ${editingId === tarea.id ? `
+          <input
+            class="task-edit-input"
+            type="text"
+            value="${tarea.descripcion.replace(/"/g, "&quot;")}"
+            data-id="${tarea.id}"
+            />
+          ` : `
+            <p class="task-desc ${tarea.estado === "completada" ? "done" : ""}">
+              ${tarea.descripcion}
+            </p>
+          `}
           <small class="task-meta">
             Creada: ${new Date(tarea.fechaCreacion).toLocaleString()}
           </small>
@@ -53,6 +72,14 @@ export function renderTareas(tareas = []) {
         <button type="button" data-action="toggle" data-id="${tarea.id}">
           ${tarea.estado === "completada" ? "↩️ Reabrir" : "✅ Completar"}
         </button>
+
+        ${editingId === tarea.id ? `
+          <button type="button" data-action="save" data-id="${tarea.id}">💾 Guardar</button>
+          <button type="button" data-action="cancel" data-id="${tarea.id}">✖️ Cancelar</button>
+        ` : `
+          <button type="button" data-action="edit" data-id="${tarea.id}">✏️ Editar</button>
+        `}
+
         <button type="button" data-action="delete" data-id="${tarea.id}">
           🗑️ Eliminar
         </button>

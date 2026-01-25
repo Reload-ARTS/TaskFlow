@@ -115,3 +115,9 @@ button {
   margin-top: 6px;
   opacity: 0.8;
 }
+
+.task-edit-input{
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 2px;
+}

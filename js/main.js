@@ -1,5 +1,5 @@
 import GestorTareas from "./models/GestorTareas.js";
-import { renderTareas, showToast, setHelperText, updateCountdowns  } from "./ui/dom.js";
+import { renderTareas, showToast, setHelperText, updateCountdowns, setEditingId, getEditingId } from "./ui/dom.js";
 import { saveTasks, loadTasks } from "./services/storage.js";
 import { fetchTasksFromApi } from "./services/api.js";
 
@@ -110,6 +110,50 @@ taskList.addEventListener("click", (e) => {
 
   const { action, id } = btn.dataset;
   if (!action || !id) return;
+
+  if (action === "edit") {
+    setEditingId(id);
+    renderTareas(gestor.listar());
+    updateCountdowns();
+
+    //enfocar el input automaticamente
+    setTimeout(() => {
+      const input = document.querySelector(`.task-edit-input[data-id="${id}"]`);
+      input?.focus();
+      input?.select();
+    }, 0);
+
+    return;
+  }
+
+  if (action === "cancel") {
+  setEditingId(null);
+  renderTareas(gestor.listar());
+  updateCountdowns();
+  showToast("↩️ Edición cancelada");
+  return;
+  }
+
+
+  if (action === "save") {
+    const input = document.querySelector(`.task-edit-input[data-id="${id}"]`);
+    const nuevoTexto = input?.value ?? "";
+
+    try {
+      gestor.actualizarDescripcion(id, nuevoTexto);
+      saveTasks(gestor.toJSON());   // ✅ importante: persistencia
+
+      setEditingId(null);
+      renderTareas(gestor.listar());
+      updateCountdowns();
+
+      showToast("💾 Tarea actualizada");
+    } catch (err) {
+    showToast("⚠️ " + err.message);
+    }
+
+  return;
+  }
 
   if (action === "toggle") {
     gestor.toggleEstado(id);
