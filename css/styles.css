@@ -93,3 +93,16 @@ button {
 .task-actions button {
   margin-top: 0;
 }
+
+.task-countdown {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.task-countdown {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.8;
+}

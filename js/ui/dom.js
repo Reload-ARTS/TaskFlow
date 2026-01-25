@@ -42,8 +42,10 @@ export function renderTareas(tareas = []) {
           </p>
           <small class="task-meta">
             Creada: ${new Date(tarea.fechaCreacion).toLocaleString()}
-            ${tarea.fechaLimite ? ` • Límite: ${tarea.fechaLimite}` : ""}
           </small>
+          ${tarea.fechaLimite ? `
+          <small class="task-countdown" data-deadline="${tarea.fechaLimite}"></small>
+          ` : ""}
         </div>
       </div>
 
@@ -58,5 +60,38 @@ export function renderTareas(tareas = []) {
     `;
 
     listEl.appendChild(li);
+  });
+}
+
+function msToTime(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const d = Math.floor(totalSeconds / 86400);
+  const h = Math.floor((totalSeconds % 86400) / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+
+  return `${d}d ${h}h ${m}m ${s}s`;
+}
+
+function deadlineToMs(deadlineStr) {
+  // deadlineStr: "YYYY-MM-DD"
+  // lo tomamos como fin del día local (23:59:59)
+  const endOfDay = new Date(`${deadlineStr}T23:59:59`);
+  return endOfDay.getTime();
+}
+
+export function updateCountdowns() {
+  const nodes = document.querySelectorAll(".task-countdown");
+
+  nodes.forEach((el) => {
+    const deadlineStr = el.dataset.deadline;
+    const deadlineMs = deadlineToMs(deadlineStr);
+    const diff = deadlineMs - Date.now();
+
+    if (diff <= 0) {
+      el.textContent = `⛔ Vencida (${deadlineStr})`;
+    } else {
+      el.textContent = `⏳ Vence en: ${msToTime(diff)} (hasta ${deadlineStr})`;
+    }
   });
 }

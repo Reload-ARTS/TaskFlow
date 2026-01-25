@@ -1,5 +1,5 @@
 import GestorTareas from "./models/GestorTareas.js";
-import { renderTareas, showToast, setHelperText } from "./ui/dom.js";
+import { renderTareas, showToast, setHelperText, updateCountdowns  } from "./ui/dom.js";
 
 const gestor = new GestorTareas();
 
@@ -11,6 +11,12 @@ const taskList = document.getElementById("task-list");
 
 // Render inicial
 renderTareas(gestor.listar());
+updateCountdowns();
+
+//Contadores (1 solo interval para toda la app)
+setInterval(() => {
+    updateCountdowns();
+}, 1000);
 
 // --- Eventos ---
 
@@ -20,18 +26,36 @@ form.addEventListener("submit", (e) => {
 
   try {
     const descripcion = inputDesc.value;
-    const fechaLimite = inputDeadline.value; // "" o "YYYY-MM-DD"
+    const fechaLimite = inputDeadline.value;
 
-    // Agregamos tarea
-    gestor.agregar({ descripcion, fechaLimite });
+    // Simular retardo al agregar (setTimeout)
+    setHelperText("⏳ Agregando tarea...");
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
 
-    // Limpiar inputs
-    form.reset();
-    setHelperText("");
+    setTimeout(() => {
+      try {
+        gestor.agregar({ descripcion, fechaLimite });
 
-    // Render
-    renderTareas(gestor.listar());
-    showToast("✅ Tarea agregada");
+        form.reset();
+        setHelperText("");
+        submitBtn.disabled = false;
+
+        renderTareas(gestor.listar());
+        updateCountdowns();
+
+        showToast("✅ Tarea agregada");
+
+        // Notificación/aviso 2 segundos después
+        setTimeout(() => {
+          showToast("🔔 Tip: revisa tus tareas pendientes");
+        }, 2000);
+
+      } catch (err) {
+        submitBtn.disabled = false;
+        setHelperText(err.message);
+      }
+    }, 800); // delay simulado
   } catch (err) {
     setHelperText(err.message);
   }
