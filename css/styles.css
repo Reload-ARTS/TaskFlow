@@ -49,3 +49,47 @@ button {
   display: none;
 }
 .toast.show { display: block; }
+
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+.task-left {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.task-desc {
+  margin: 0;
+  font-weight: 600;
+}
+
+.task-desc.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-meta {
+  display: block;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.task-actions button {
+  margin-top: 0;
+}
