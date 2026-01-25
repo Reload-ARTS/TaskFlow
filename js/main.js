@@ -1,7 +1,9 @@
 import GestorTareas from "./models/GestorTareas.js";
 import { renderTareas, showToast, setHelperText, updateCountdowns  } from "./ui/dom.js";
+import { saveTasks, loadTasks } from "./services/storage.js";
+import { fetchTasksFromApi } from "./services/api.js";
 
-const gestor = new GestorTareas();
+const gestor = new GestorTareas(loadTasks());
 
 // --- Referencias DOM ---
 const form = document.getElementById("task-form");
@@ -9,9 +11,40 @@ const inputDesc = document.getElementById("task-desc");
 const inputDeadline = document.getElementById("task-deadline");
 const taskList = document.getElementById("task-list");
 
+const btnSync = document.getElementById("btn-sync");
+
+btnSync.addEventListener("click", async () => {
+  btnSync.disabled = true;
+  showToast("🔄 Sincronizando...");
+
+  try {
+    const tareasApi = await fetchTasksFromApi(5);
+
+    tareasApi.forEach((t) => {
+      gestor.agregar({
+        descripcion: t.descripcion,
+        fechaLimite: "",
+        estado: t.estado,
+      });
+    });
+
+    saveTasks(gestor.toJSON());
+    renderTareas(gestor.listar());
+    updateCountdowns();
+
+    showToast("✅ Tareas importadas desde API");
+  } catch (err) {
+    console.error(err);
+    showToast("❌ Error al sincronizar (revisa conexión)");
+  } finally {
+    btnSync.disabled = false;
+  }
+});
+
 // Render inicial
 renderTareas(gestor.listar());
 updateCountdowns();
+saveTasks(gestor.toJSON())
 
 //Contadores (1 solo interval para toda la app)
 setInterval(() => {
@@ -36,6 +69,7 @@ form.addEventListener("submit", (e) => {
     setTimeout(() => {
       try {
         gestor.agregar({ descripcion, fechaLimite });
+        saveTasks(gestor.toJSON());
 
         form.reset();
         setHelperText("");
@@ -79,12 +113,14 @@ taskList.addEventListener("click", (e) => {
 
   if (action === "toggle") {
     gestor.toggleEstado(id);
+    saveTasks(gestor.toJSON());
     renderTareas(gestor.listar());
     showToast("🔁 Estado actualizado");
   }
 
   if (action === "delete") {
     gestor.eliminar(id);
+    saveTasks(gestor.toJSON());
     renderTareas(gestor.listar());
     showToast("🗑️ Tarea eliminada");
   }

@@ -64,8 +64,17 @@ button {
 
 .task-left {
   display: flex;
-  gap: 10px;
   align-items: flex-start;
+  gap: 12px;
+}
+
+.task-left input[type="checkbox"]{
+  flex: 0 0 24px;
+  margin-top: 4px;
+}
+
+.task-left > div{
+  felx: 1;
 }
 
 .task-desc {

@@ -11,7 +11,7 @@ export default class GestorTareas {
     return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
   }
 
-  agregar({ descripcion, fechaLimite = null }) {
+  agregar({ descripcion, fechaLimite = null, estado = "pendiente"}) {
     const texto = (descripcion ?? "").trim();
     if (!texto) throw new Error("Debes ingresar una descripción.");
 
@@ -19,7 +19,7 @@ export default class GestorTareas {
       id: this.generarId(),
       descripcion: texto,
       fechaLimite: fechaLimite || null,
-      estado: "pendiente",
+      estado,
     });
 
     this.tareas = [...this.tareas, tarea]; // spread (ES6)
