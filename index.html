@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow - Gestión de Tareas</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+  <header class="container">
+    <h1>TaskFlow</h1>
+    <p>Gestión simple de tareas con JavaScript</p>
+  </header>
+
+  <main class="container">
+    <!-- Formulario -->
+    <section class="card">
+      <h2>Nueva tarea</h2>
+
+      <form id="task-form">
+        <label for="task-desc">Descripción</label>
+        <input
+          id="task-desc"
+          name="taskDesc"
+          type="text"
+          placeholder="Ej: Estudiar async/await"
+          autocomplete="off"
+          required
+        />
+
+        <label for="task-deadline">Fecha límite (opcional)</label>
+        <input id="task-deadline" name="taskDeadline" type="date" />
+
+        <button type="submit">Agregar</button>
+      </form>
+
+      <small id="helper-text"></small>
+    </section>
+
+    <!-- Listado -->
+    <section class="card">
+      <div class="row">
+        <h2>Mis tareas</h2>
+        <button id="btn-sync" type="button">Sincronizar</button>
+      </div>
+
+      <ul id="task-list"></ul>
+      <p id="empty-state">No hay tareas todavía 👀</p>
+    </section>
+
+    <!-- Notificación -->
+    <div id="toast" class="toast" aria-live="polite"></div>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
