@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Defino la codificación y hago la página responsive para móviles -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Título que aparece en la pestaña del navegador -->
   <title>TaskFlow - Gestión de Tareas</title>
+
+  <!-- Conecto la hoja de estilos principal -->
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
 <body>
+  <!-- Encabezado principal: presento el nombre de la app y una descripción corta -->
   <header class="container">
     <h1>TaskFlow</h1>
     <p>Gestión simple de tareas con JavaScript</p>
   </header>
 
   <main class="container">
-    <!-- Formulario -->
+    <!-- Sección del formulario: aquí creo nuevas tareas -->
     <section class="card">
       <h2>Nueva tarea</h2>
 
+      <!-- Formulario principal:
+           lo uso para capturar la descripción y (opcionalmente) una fecha límite -->
       <form id="task-form">
+        <!-- Campo: descripción obligatoria -->
         <label for="task-desc">Descripción</label>
         <input
           id="task-desc"
@@ -29,30 +38,42 @@
           required
         />
 
+        <!-- Campo: fecha límite opcional (tipo date para facilitar selección) -->
         <label for="task-deadline">Fecha límite (opcional)</label>
         <input id="task-deadline" name="taskDeadline" type="date" />
 
+        <!-- Botón que dispara el submit del formulario -->
         <button type="submit">Agregar</button>
       </form>
 
+      <!-- Muestro mensajes de ayuda/validación (por ejemplo: errores o tips) -->
       <small id="helper-text"></small>
     </section>
 
-    <!-- Listado -->
+    <!-- Sección del listado: aquí muestro todas las tareas existentes -->
     <section class="card">
+      <!-- Encabezado del listado con el botón de sincronización -->
       <div class="row">
         <h2>Mis tareas</h2>
+
+        <!-- Botón para importar tareas desde una API externa (fetch + async/await) -->
         <button id="btn-sync" type="button">Sincronizar</button>
       </div>
 
+      <!-- Aquí se renderiza dinámicamente la lista de tareas desde JavaScript -->
       <ul id="task-list"></ul>
+
+      <!-- Mensaje que se muestra cuando aún no hay tareas -->
       <p id="empty-state">No hay tareas todavía 👀😒🤔</p>
     </section>
 
-    <!-- Notificación -->
+    <!-- Notificación tipo "toast":
+         la uso para mostrar mensajes cortos al usuario (ej: tarea agregada, error, etc.)
+         aria-live="polite" ayuda a accesibilidad (lectores de pantalla) -->
     <div id="toast" class="toast" aria-live="polite"></div>
   </main>
 
+  <!-- Cargo el script principal como módulo ES6 para poder usar import/export -->
   <script type="module" src="./js/main.js"></script>
 </body>
 </html>

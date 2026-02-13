@@ -1,17 +1,30 @@
-* { box-sizing: border-box; }
+/* Aplica box-sizing border-box a todos los elementos.
+   Esto hace que padding y border no aumenten el tamaño total del elemento. */
+* {
+  box-sizing: border-box;
+}
 
+/* Estilos base del body:
+   - Elimina margen por defecto
+   - Define fuente del sistema
+   - Mejora legibilidad con line-height */
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
   line-height: 1.4;
 }
 
+/* Contenedor principal:
+   - Centra el contenido
+   - Limita el ancho máximo
+   - Agrega padding interno */
 .container {
   max-width: 900px;
   margin: 0 auto;
   padding: 16px;
 }
 
+/* Tarjetas visuales para separar secciones */
 .card {
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -19,15 +32,26 @@ body {
   margin: 16px 0;
 }
 
-label { display: block; margin-top: 10px; }
-input { width: 100%; padding: 10px; margin-top: 6px; }
+/* Formularios */
+label {
+  display: block;
+  margin-top: 10px;
+}
 
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+}
+
+/* Botones generales */
 button {
   margin-top: 12px;
   padding: 10px 12px;
   cursor: pointer;
 }
 
+/* Fila flexible para encabezados (ej: "Mis tareas" + botón Sincronizar) */
 .row {
   display: flex;
   align-items: center;
@@ -35,9 +59,18 @@ button {
   gap: 12px;
 }
 
-#task-list { list-style: none; padding: 0; }
-#empty-state { opacity: 0.7; }
+/* Lista de tareas */
+#task-list {
+  list-style: none;
+  padding: 0;
+}
 
+/* Mensaje cuando no hay tareas */
+#empty-state {
+  opacity: 0.7;
+}
+
+/* Toast: notificación flotante en esquina inferior derecha */
 .toast {
   position: fixed;
   right: 16px;
@@ -46,14 +79,22 @@ button {
   border-radius: 12px;
   border: 1px solid #ddd;
   background: #fff;
-  display: none;
+  display: none; /* Oculto por defecto */
 }
-.toast.show { display: block; }
 
+/* Cuando tiene clase .show se hace visible */
+.toast.show {
+  display: block;
+}
 
+/* -----------------------------
+   Estilos de cada tarea
+------------------------------ */
+
+/* Contenedor principal de una tarea */
 .task-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* izquierda y derecha */
   align-items: flex-start;
   gap: 12px;
   padding: 12px;
@@ -62,47 +103,48 @@ button {
   margin: 10px 0;
 }
 
+/* Lado izquierdo:
+   contiene checkbox + descripción + meta + contador */
 .task-left {
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  flex: 1;         /* ocupa el espacio disponible */
+  min-width: 0;    /* evita desbordes con textos largos */
 }
 
-.task-left input[type="checkbox"]{
+/* Checkbox con tamaño fijo */
+.task-left input[type="checkbox"] {
   flex: 0 0 24px;
   margin-top: 4px;
 }
 
-.task-left > div{
-  felx: 1;
+/* Contenedor interno del contenido textual */
+.task-left > div {
+  flex: 1;
+  min-width: 0;
 }
 
+/* Descripción principal */
 .task-desc {
   margin: 0;
   font-weight: 600;
 }
 
+/* Estado completado (tachado visual) */
 .task-desc.done {
   text-decoration: line-through;
   opacity: 0.6;
 }
 
+/* Texto secundario (fecha creación) */
 .task-meta {
   display: block;
   margin-top: 4px;
   opacity: 0.7;
 }
 
-.task-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.task-actions button {
-  margin-top: 0;
-}
-
+/* Contador regresivo cuando existe fecha límite */
 .task-countdown {
   display: block;
   margin-top: 6px;
@@ -110,13 +152,27 @@ button {
   opacity: 0.8;
 }
 
-.task-countdown {
-  display: block;
-  margin-top: 6px;
-  opacity: 0.8;
+/* -----------------------------
+   Lado derecho (botones)
+------------------------------ */
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;        /* evita que los botones bajen de línea */
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-width: 320px;         /* ancho mínimo para mantener alineación */
 }
 
-.task-edit-input{
+/* Botones de acciones */
+.task-actions button {
+  margin-top: 0;
+  white-space: nowrap;      /* evita que el texto se parta */
+}
+
+/* Input que aparece al editar una tarea */
+.task-edit-input {
   width: 100%;
   padding: 8px 10px;
   margin-top: 2px;
