@@ -8,12 +8,12 @@ Proyecto desarrollado para el Módulo 4 – Programación Avanzada en JavaScript
 
 Desarrollar una aplicación web en JavaScript que permita gestionar tareas, aplicando:
 
--Programación Orientada a Objetos (POO)
--Manipulación del DOM y manejo de eventos
--Características modernas de JavaScript (ES6+)
--Programación asíncrona (async / await)
--Consumo de APIs externas
--Persistencia de datos en el navegador (localStorage)
+- Programación Orientada a Objetos (POO)
+- Manipulación del DOM y manejo de eventos
+- Características modernas de JavaScript (ES6+)
+- Programación asíncrona (async / await)
+- Consumo de APIs externas
+- Persistencia de datos en el navegador (localStorage)
 
 ---
 
@@ -21,14 +21,14 @@ Desarrollar una aplicación web en JavaScript que permita gestionar tareas, apli
 
 La aplicación permite al usuario:
 
--Crear tareas con descripción y fecha límite opcional
--Editar tareas existentes
--Eliminar tareas
--Marcar tareas como completadas y reabrirlas
--Visualizar un contador regresivo en tareas con fecha límite
--Mantener las tareas guardadas aunque se recargue o cierre la página
--Importar tareas desde una API externa mediante el botón Sincronizar
--Recibir mensajes visuales de confirmación y notificación
+- Crear tareas con descripción y fecha límite opcional
+- Editar tareas existentes
+- Eliminar tareas
+- Marcar tareas como completadas y reabrirlas
+- Visualizar un contador regresivo en tareas con fecha límite
+- Mantener las tareas guardadas aunque se recargue o cierre la página
+- Importar tareas desde una API externa mediante el botón Sincronizar
+- Recibir mensajes visuales de confirmación y notificación
 
 ---
 
@@ -43,15 +43,15 @@ La aplicación permite al usuario:
 
 ## 🧠 Conceptos aplicados
 
--Uso de clases para estructurar la lógica (Tarea, GestorTareas)
--Separación de responsabilidades por carpetas (models, services, ui)
--Manipulación dinámica del DOM
--Delegación de eventos para mejorar el rendimiento
--Programación asíncrona con fetch, async / await y try / catch
--Uso de setTimeout y setInterval
--Persistencia de datos usando localStorage
--Consumo y normalización de datos desde una API externa
--Control de versiones con Git y GitHub usando ramas de trabajo
+- Uso de clases para estructurar la lógica (Tarea, GestorTareas)
+- Separación de responsabilidades por carpetas (models, services, ui)
+- Manipulación dinámica del DOM
+- Delegación de eventos para mejorar el rendimiento
+- Programación asíncrona con fetch, async / await y try / catch
+- Uso de setTimeout y setInterval
+- Persistencia de datos usando localStorage
+- Consumo y normalización de datos desde una API externa
+- Control de versiones con Git y GitHub usando ramas de trabajo
 
 ---
 
