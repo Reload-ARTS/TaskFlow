@@ -1,75 +1,66 @@
-📌 TaskFlow – Aplicación Web de Gestión de Tareas (Módulo 4)
+# 📌 TaskFlow – Aplicación Web de Gestión de Tareas - Módulo 4
 
-Proyecto desarrollado para el Módulo 4 – Programación Avanzada en JavaScript, cuyo objetivo es aplicar conceptos intermedios y avanzados del lenguaje mediante una aplicación web interactiva, enfocada en la manipulación del DOM, programación asíncrona y consumo de APIs.
+Proyecto desarrollado para el Módulo 4 – Programación Avanzada en JavaScript, cuyo objetivo es aplicar conceptos intermedios y avanzados del lenguaje mediante una aplicación web interactiva enfocada en la manipulación del DOM, programación asíncrona y consumo de APIs.
 
-🎯 Objetivo del proyecto
+---
+
+## 🎯 Objetivo del proyecto
 
 Desarrollar una aplicación web en JavaScript que permita gestionar tareas, aplicando:
 
-Programación Orientada a Objetos (POO)
+-Programación Orientada a Objetos (POO)
+-Manipulación del DOM y manejo de eventos
+-Características modernas de JavaScript (ES6+)
+-Programación asíncrona (async / await)
+-Consumo de APIs externas
+-Persistencia de datos en el navegador (localStorage)
 
-Manipulación del DOM y manejo de eventos
+---
 
-Características modernas de JavaScript (ES6+)
-
-Programación asíncrona (async / await)
-
-Consumo de APIs externas
-
-Persistencia de datos en el navegador
-
-⚙️ Funcionalidades
+## ⚙️ Funcionalidades
 
 La aplicación permite al usuario:
 
-Crear tareas con descripción y fecha límite opcional
+-Crear tareas con descripción y fecha límite opcional
+-Editar tareas existentes
+-Eliminar tareas
+-Marcar tareas como completadas y reabrirlas
+-Visualizar un contador regresivo en tareas con fecha límite
+-Mantener las tareas guardadas aunque se recargue o cierre la página
+-Importar tareas desde una API externa mediante el botón Sincronizar
+-Recibir mensajes visuales de confirmación y notificación
 
-Editar tareas existentes
+---
 
-Eliminar tareas
+## 🖥️ Ejecución del proyecto
 
-Marcar tareas como completadas y reabrirlas
+1. Abrir el proyecto en **Visual Studio Code**
+2. Ejecutar `index.html` (recomendado con **Live Server**)
+3. Interactuar con la aplicación desde el navegador
+4. Las tareas se gestionan directamente desde la interfaz gráfica
 
-Visualizar un contador regresivo en tareas con fecha límite
+---
 
-Mantener las tareas guardadas aunque se recargue o cierre la página
+## 🧠 Conceptos aplicados
 
-Importar tareas desde una API externa mediante el botón Sincronizar
+-Uso de clases para estructurar la lógica (Tarea, GestorTareas)
+-Separación de responsabilidades por carpetas (models, services, ui)
+-Manipulación dinámica del DOM
+-Delegación de eventos para mejorar el rendimiento
+-Programación asíncrona con fetch, async / await y try / catch
+-Uso de setTimeout y setInterval
+-Persistencia de datos usando localStorage
+-Consumo y normalización de datos desde una API externa
+-Control de versiones con Git y GitHub usando ramas de trabajo
 
-Recibir mensajes visuales de confirmación y notificación
+---
 
-🖥️ Ejecución del proyecto
+## 📂 Estructura del proyecto
 
-Abrir el proyecto en Visual Studio Code
-
-Ejecutar index.html (recomendado con Live Server)
-
-Interactuar con la aplicación desde el navegador
-
-Las tareas se gestionan directamente desde la interfaz gráfica
-
-🧠 Conceptos aplicados
-
-Uso de clases para estructurar la lógica (Tarea, GestorTareas)
-
-Separación de responsabilidades por carpetas (modelos, servicios, UI)
-
-Manipulación dinámica del DOM
-
-Delegación de eventos para mejorar el rendimiento
-
-Programación asíncrona con fetch, async / await y try / catch
-
-Uso de setTimeout y setInterval para simulación de procesos asíncronos
-
-Persistencia de datos usando localStorage
-
-Consumo y normalización de datos desde una API externa
-
-Control de versiones con Git y GitHub usando ramas de trabajo
-
-📂 Estructura del proyecto
+```text
 TaskFlow/
+├── assets/
+│   └── img/
 ├── index.html
 ├── css/
 │   └── styles.css
@@ -84,12 +75,17 @@ TaskFlow/
 │   └── ui/
 │       └── dom.js
 └── README.md
+```
 
-👤 Autor
+---
 
-Antonio Toro Sagredo
-Curso: Desarrollo de Aplicaciones Full Stack JavaScript Trainee
-Módulo 4 – Programación Avanzada en JavaScript
+## 👤 Autor
+
+**Antonio Toro Sagredo**  
+Curso: Desarrollo de Aplicaciones Full Stack JavaScript Trainee  
+Módulo 3
+
+---
 
 ## 📸 Capturas de la aplicación en funcionamiento
 
